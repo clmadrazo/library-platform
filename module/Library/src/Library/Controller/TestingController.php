@@ -14,15 +14,15 @@ class TestingController extends RestfulController {
         
         $session->start();
         
-        $session->visit('http://library-platform.carlosmadrazo.xyz/');
+        $session->visit('');
         
         $page = $session->getPage();
         $emailField = $page->find('named', array('id', 'email'));
         $passField = $page->find('named', array('id', 'password'));
         $loginButton = $page->find('named', array('id', 'normal-login'));
 
-        $emailField->setValue('madrazoreyescarloslazaro@gmail.com');
-        $passField->setValue('123456');
+        $emailField->setValue('email');
+        $passField->setValue('pasword');
         $loginButton->click();
 
         echo $session->getCurrentUrl();

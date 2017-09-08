@@ -167,9 +167,9 @@ class AuthenticationController extends RestfulController {
         ';
 
 
-            $url = 'https://api.sendgrid.com/';
-            $user = 'username';
-            $pass = 'password';
+            // $url = 'http api.sendgrid'; 
+            // $user = 'username';
+            // $pass = 'password';
             // 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
 
             $template = '{
