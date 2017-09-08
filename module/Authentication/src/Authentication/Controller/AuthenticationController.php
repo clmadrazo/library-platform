@@ -72,11 +72,7 @@ class AuthenticationController extends RestfulController {
                 foreach ($userRoles as $userRole) {
                     $id = $userRole->getId();
                     if (!in_array($id, $tempRolesIds)) {
-                        if ($userRole->getIsAdmin()) {
-                            $tempRolesIds[] = 1;
-                        } else {
-                            $tempRolesIds[] = $id;
-                        }
+                        $tempRolesIds[] = $id;
                         $tempRolesNames[] = $userRole->getTitle();
                     }
                 }

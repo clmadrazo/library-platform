@@ -8,7 +8,6 @@ return array(
     'service_manager' => array(
         'invokables' => array(
             'AuthenticationHelper' => 'Authentication\Model\Helper\AuthenticationHelper',
-            'ProfileHelper' => 'Profile\Model\Helper\ProfileHelper',
         ),
     ),
     'router' => array(
