@@ -97,23 +97,12 @@ class RegistrationController extends RestfulController {
             }
         }
 
-        if ((isset($data[0]['registrationCode'])) && ($data[0]['registrationCode'] != "undefined")) {
-            $userInvitation = $em->getRepository('User\Entity\UserInvitation')->findOneBy(array('registration_code' => $data[0]['registrationCode']));
-            if (empty($userInvitation)) {
-                $this->getResponse()->setStatusCode(404);
-                return array("error" => "Email já existe");
-            } else {
-                $aux = $this->em->getRepository('User\Entity\User')->findOneBy(array('email' => $userInvitation->getEmail()));
-                $data[0]['userId'] = $aux->getId();
-            }
-        }
         $user = $this->_fillUser($data);
         $new = false;
         if (!empty($userInvitation)) {
             //$new = true;
             $user->setUsername($userInvitation->getEmail());
             $user->setEmail($userInvitation->getEmail());
-            $user->setCustomer($userInvitation->getCustomer());
         }
         $user->setProfileUrl('');
         $user->setTimezone(null);
@@ -123,18 +112,11 @@ class RegistrationController extends RestfulController {
             if (!$aux) {
                 $roleUser = new \User\Entity\RoleUser();
                 $roleRepository = $em->getRepository('User\Entity\Role');
-                if (!empty($userInvitation)) {
-                    $em->persist($user);
-                    $em->getConnection()->exec("update user_invitations set status='1' where email = '" . $userInvitation->getEmail() . "'");
-                    $em->flush();
-                    $role = $roleRepository->find($userInvitation->getRole()->getId());
-                } else {
-                    if (isset($data[0]['role_id'])) {
+                if (isset($data[0]['role_id'])) {
                         $role = $roleRepository->find($data[0]['role_id']);
                     } else {
                         $role = $roleRepository->find(1);
                     }
-                }
                 $roleUser->setRole($role);
                 $roleUser->setUser($user);
                 $em->persist($roleUser);
