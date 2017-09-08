@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="Registration Module">
+            <directory>./RegistrationTest</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">..</directory>
+            <exclude>
+                <directory suffix=".php">../test</directory>
+                <file>../Module.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

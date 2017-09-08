@@ -1,0 +1,5 @@
+composer.lock
+vendor
+data/cache
+data/DoctrineORMModule
+config/autoload/global.local.php
